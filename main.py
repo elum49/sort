@@ -51,3 +51,34 @@ def insertion_sort(arr):
         swaps += 1
         
     return arr, comparisons, swaps
+
+def main():
+    size = 10
+    
+    ascending = list(range(1, size+1))
+    descending = list(range(size, 0, -1))
+    random_arr = list(range(1, size+1))
+    random.shuffle(random_arr)
+    
+    print(f"{'Алгоритм':<15} {'Тип массива':<15} {'Сравнения':<12} {'Перестановки':<12}")
+    print("="*60)
+    
+    algorithms = [
+        ("Bubble", bubble_sort),
+        ("Selection", selection_sort), 
+        ("Insertion", insertion_sort)
+    ]
+    
+    test_cases = [
+        ("Возрастающий", ascending),
+        ("Убывающий", descending),
+        ("Случайный", random_arr)
+    ]
+    
+    for array_type, array in test_cases:
+        for algo_name, algo_func in algorithms:
+            sorted_arr, comp, swaps = algo_func(array)
+            print(f"{algo_name:<15} {array_type:<15} {comp:<12} {swaps:<12}")
+
+if __name__ == "__main__":
+    main()
